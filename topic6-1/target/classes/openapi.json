@@ -1,0 +1,131 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "https://virtserver.swaggerhub.com/EVANWILSON4/Activity3-2API/1.0.0"
+    }
+  ],
+  "info": {
+    "description": "Activity 3-2 Rest API example",
+    "version": "1.0.0",
+    "title": "Activity 3-2 Rest API example",
+    "contact": {
+      "email": "ewilson33@my.gcu.edu"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "Education",
+      "description": "Educational use only"
+    }
+  ],
+  "paths": {
+    "/service/getjson": {
+      "get": {
+        "tags": [
+          "developers"
+        ],
+        "summary": "Retrieves all orders in JSON format",
+        "operationId": "getOrdersAsJson",
+        "description": "Simple API call to retrieve all sample orders in JSON format",
+        "responses": {
+          "200": {
+            "description": "Orders List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad input parameter"
+          }
+        }
+      }
+    },
+    "/service/getxml": {
+      "get": {
+        "tags": [
+          "developers"
+        ],
+        "summary": "Retrieves all orders in XML format",
+        "operationId": "getOrdersAsXml",
+        "description": "Simple API call to retrieve all sample orders in XML format",
+        "responses": {
+          "200": {
+            "description": "Orders List",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OrderModel": {
+        "type": "object",
+        "required": [
+          "id",
+          "orderNo",
+          "productName",
+          "price",
+          "quantity"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "orderNo": {
+            "type": "string",
+            "example": "000000001"
+          },
+          "productName": {
+            "type": "string",
+            "example": "Widget Adapter"
+          },
+          "price": {
+            "type": "number",
+            "format": "float",
+            "example": 12.34
+          },
+          "quantity": {
+            "type": "integer",
+            "example": 5
+          }
+        }
+      },
+      "OrderList": {
+        "type": "object",
+        "properties": {
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderModel"
+            }
+          }
+        }
+      }
+    }
+  }
+}
